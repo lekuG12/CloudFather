@@ -6,7 +6,7 @@ load_dotenv()
 
 def get_weather(city):
     token = os.getenv('API_KEY')
-    URL = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={token}' #change weather to forecast for 5 day forecast
+    URL = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={token}&units=metric' #change weather to forecast for 5 day forecast
     
     try:
         response = requests.get(URL)
@@ -17,7 +17,8 @@ def get_weather(city):
                 'temperature': data['main']['temp'],
                 'humidity': data['main']['humidity'],
                 'pressure': data['main']['pressure'],
-                'wind_speed': data['wind']['speed']
+                'wind_speed': data['wind']['speed'],
+                'description': data['weather'][0]['description']
             }
             return weather_data
         else:
