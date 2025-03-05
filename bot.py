@@ -26,6 +26,7 @@ def city_handler(message):
                    f"💧 *Humidity*: {weather_info['humidity']}%\n\n" \
                    f"🌀 *Wind Speed*: {weather_info['wind_speed']}m/s\n\n" \
                    f"🌬 *Pressure*: {weather_info['pressure']}hPa\n\n" \
+                    f"🌧 *Precipitation*: {weather_info['precipitation']}mm\n\n" \
                    f"📝 *Description*: {weather_info['description']}"
         
         bot.reply_to(message, response, parse_mode='Markdown')

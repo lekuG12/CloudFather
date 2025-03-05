@@ -14,10 +14,8 @@ def get_weather(city):
         data = response.json()
 
         if response.status_code == 200:
-            # Get tomorrow's date
             tomorrow = (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d')
             
-            # Find the forecast for tomorrow (usually index 8 for next day noon)
             tomorrow_forecast = None
             for forecast in data['list']:
                 forecast_date = datetime.fromtimestamp(forecast['dt']).strftime('%Y-%m-%d')
@@ -26,6 +24,17 @@ def get_weather(city):
                     break
             
             if tomorrow_forecast:
+                # Initialize precipitation
+                precipitation = 0.0
+                
+                # Check for rain
+                if 'rain' in tomorrow_forecast:
+                    precipitation += tomorrow_forecast['rain'].get('3h', 0.0)
+                
+                # Check for snow
+                if 'snow' in tomorrow_forecast:
+                    precipitation += tomorrow_forecast['snow'].get('3h', 0.0)
+
                 weather_data = {
                     'city': data['city']['name'],
                     'temperature': round(tomorrow_forecast['main']['temp'], 1),
@@ -33,6 +42,7 @@ def get_weather(city):
                     'pressure': tomorrow_forecast['main']['pressure'],
                     'wind_speed': tomorrow_forecast['wind']['speed'],
                     'description': tomorrow_forecast['weather'][0]['description'],
+                    'precipitation': round(precipitation, 1),
                     'date': tomorrow
                 }
                 return weather_data
