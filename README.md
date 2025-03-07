@@ -20,7 +20,7 @@ A Telegram bot that provides weather forecasts based on city input. The bot inte
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/LeGiT300/CloudFather.git.git
+   git clone https://github.com/LeGiT300/CloudFather.git
    cd weather-forecast-telegram-bot
    ```
 
