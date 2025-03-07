@@ -9,7 +9,7 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
-    text = "Hello! I am a CLOUDFATHER\n\nEnter the CITY you want tomorrow's weather forecast for"
+    text = "Hello! I am CLOUDFATHER\n\nEnter the CITY you want tomorrow's weather forecast for"
     bot.reply_to(message, text)
 
 @bot.message_handler(func=lambda message: True)
